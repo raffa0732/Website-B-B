@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:website/pages/explore.dart';
-//import 'package:lib/classes/footer.dart';
+import 'package:website/main.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Esplora());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Esplora extends StatelessWidget {
+  const Esplora({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,21 +17,21 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomHotelAppBar(),
+      appBar: CustomHotelAppBar(),
       body: const Center(
         child: Text(
-          "SLIDESHOW IMMAGINI B&B (5/6 IMMAGINI)",
+          "Esplora page",
           style: TextStyle(fontSize: 24),
         ),
       ),
     );
-    //BBViaCastelloFooter();
   }
 }
 
@@ -74,14 +73,14 @@ class CustomHotelAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           Row(
             children: [
-              _menuItem("Home", isActive: true, onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+              _menuItem("Home", isActive: false, onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const MyApp()));
               }),
-              _menuItem("Explore", isActive: false, onTap: () {
+              _menuItem("Explore", isActive: true, onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Esplora()));
               }),
-              _menuItem("Camere", isActive: false),
-              _menuItem("Meetings & Events", isActive: false),
+              _menuItem("Camere"),
+              _menuItem("Meetings & Events"),
             ],
           ),
         ],
