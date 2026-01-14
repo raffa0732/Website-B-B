@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:website/pages/explore.dart';
-//import 'package:lib/classes/footer.dart';
+import 'package:website/classes/footer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,16 +23,29 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomHotelAppBar(),
-      body: const Center(
-        child: Text(
-          "SLIDESHOW IMMAGINI B&B (5/6 IMMAGINI)",
-          style: TextStyle(fontSize: 24),
+     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: CustomHotelAppBar(),
+         body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+             children: const [
+              SizedBox(
+                height: 600, // Altezza di esempio per spingere il footer in basso
+                child: Center(
+                child: Text(
+                  'Welcome to B&B Via Castello!',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),        
+                  ),
+              ),
+              ),
+              BBViaCastelloFooter(),
+            ],
+          ),
         ),
       ),
     );
-    //BBViaCastelloFooter();
   }
 }
 
@@ -78,15 +91,16 @@ class CustomHotelAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
               }),
               _menuItem("Explore", isActive: false, onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Esplora()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => EsploraCremaSection()));
               }),
-              _menuItem("Camere", isActive: false),
+              _camereDropdown(context),
               _menuItem("Meetings & Events", isActive: false),
             ],
           ),
         ],
       ),
     );
+    
   }
 
   static Widget _menuItem(String text, {bool isActive = false, VoidCallback? onTap}) {
@@ -105,4 +119,68 @@ class CustomHotelAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
+
+  static Widget _camereDropdown(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 32),
+    child: MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          dropdownColor: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          elevation: 8,
+          icon: const Icon(
+            Icons.keyboard_arrow_down,
+            size: 20,
+            color: Colors.black87,
+          ),
+          hint: Row(
+            children: const [
+              Text(
+                "Camere",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(width: 4),
+            ],
+          ),
+          items: const [
+            DropdownMenuItem(
+              value: "stella",
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: Text(
+                  "Stella",
+                  style: TextStyle(fontSize: 14),
+                ),
+              ),
+            ),
+            DropdownMenuItem(
+              value: "sole_luna",
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: Text(
+                  "Sole e Luna",
+                  style: TextStyle(fontSize: 14),
+                ),
+              ),
+            ),
+          ],
+          onChanged: (value) {
+            if (value == "stella") {
+              // Navigator.push(context, MaterialPageRoute(builder: (_) => const StellaPage()));
+            } else if (value == "sole_luna") {
+              // Navigator.push(context, MaterialPageRoute(builder: (_) => const SoleLunaPage()));
+            }
+          },
+        ),
+      ),
+    ),
+  );
+}
+
 }
