@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:website/pages/explore.dart';
 import 'package:website/classes/footer.dart';
+import 'package:website/classes/SlideShow.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,14 +33,14 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
              children: const [
               SizedBox(
-                height: 600, // Altezza di esempio per spingere il footer in basso
-                child: Center(
-                child: Text(
-                  'Welcome to B&B Via Castello!',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),        
-                  ),
+                height: 300,
+                child: ImageSlideShow(),
               ),
+              SizedBox(height: 24),
+              Center(
+                child: Text('Welcome to B&B Via Castello!', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold))
               ),
+              SizedBox(height: 600),
               BBViaCastelloFooter(),
             ],
           ),
