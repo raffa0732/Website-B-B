@@ -37,9 +37,9 @@ class HomePage extends StatelessWidget {
                 child: ImageSlideShow(),
               ),
               SizedBox(height: 24),
-              Center(
+              /* Center(
                 child: Text('Welcome to B&B Via Castello!', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold))
-              ),
+              ), */
               SizedBox(height: 600),
               BBViaCastelloFooter(),
             ],

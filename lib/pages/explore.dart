@@ -42,7 +42,7 @@ class EsploraCremaSection extends StatelessWidget {
                       child: _buildColorBlock(
                         color: Colors.black,
                         child: const Text(
-                          'STILE\nURBANO',
+                          'B&B Via Castello',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
